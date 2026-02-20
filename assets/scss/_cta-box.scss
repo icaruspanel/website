@@ -11,6 +11,7 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
 
     &::before {
         content: '';
@@ -20,6 +21,11 @@
         right: 0;
         height: 2px;
         background: var(--gradient-flame);
+    }
+
+    &:hover {
+        border-color: var(--border-hover);
+        box-shadow: 0 0 20px var(--flame-glow), inset 0 0 20px rgba(236, 108, 81, 0.03);
     }
 
     &__title {

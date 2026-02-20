@@ -9,6 +9,16 @@
     margin: 0 auto;
     padding: 2rem 2rem 6rem;
 
+    // Gradient section divider
+    &::before {
+        content: '';
+        display: block;
+        height: 1px;
+        margin-bottom: 2rem;
+        background: linear-gradient(90deg, transparent 0%, var(--flame) 30%, var(--gold) 70%, transparent 100%);
+        opacity: 0.3;
+    }
+
     &__header {
         display: flex;
         align-items: center;

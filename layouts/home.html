@@ -1,5 +1,35 @@
 {{ define "main" }}
 <section class="hero">
+    {{/* ASCII decoration — faint code lines behind hero */}}
+    <pre class="hero__code hero__code--left" aria-hidden="true">server {
+  name  "lobby"
+  game  "minecraft"
+  port  25565
+  max   100
+
+  health {
+    check  "/status"
+    every  "30s"
+  }
+
+  plugins {
+    load "economy"
+    load "perms"
+  }
+}</pre>
+    <pre class="hero__code hero__code--right" aria-hidden="true">$ icarus status
+┌──────────┬────────┬──────┐
+│ server   │ status │ ping │
+├──────────┼────────┼──────┤
+│ lobby    │ online │  4ms │
+│ survival │ online │  7ms │
+│ creative │  idle  │   —  │
+│ proxy    │ online │  2ms │
+└──────────┴────────┴──────┘
+
+  4 servers │ 3 online │ 1 idle
+  cpu 23%   │ mem 4.1G</pre>
+
     <div class="hero__logo logo logo--lg fade-up">
         <span class="logo__icon">{{ partial "logo-icon.html" . }}</span>
         <span class="logo__wordmark">Icarus</span>
@@ -18,9 +48,28 @@
         {{ .Plain }}
     </p>
 
+    <div class="feature-pills fade-up" style="animation-delay:0.22s">
+        <span class="feature-pills__pill">
+            <span class="feature-pills__icon">{{ (resources.Get "svg/modern-controller.svg").Content | safeHTML }}</span>
+            Multi-game
+        </span>
+        <span class="feature-pills__pill">
+            <span class="feature-pills__icon">{{ (resources.Get "svg/heart.svg").Content | safeHTML }}</span>
+            Real-time
+        </span>
+        <span class="feature-pills__pill">
+            <span class="feature-pills__icon">{{ (resources.Get "svg/code.svg").Content | safeHTML }}</span>
+            Open Source
+        </span>
+        <span class="feature-pills__pill">
+            <span class="feature-pills__icon">{{ (resources.Get "svg/puzzle-piece.svg").Content | safeHTML }}</span>
+            Plugin System
+        </span>
+    </div>
+
     <form
         class="hero__newsletter newsletter fade-up"
-        style="animation-delay:0.26s"
+        style="animation-delay:0.3s"
         action="https://buttondown.com/api/emails/embed-subscribe/{{ site.Params.buttondown_username }}"
         method="post"
     >
@@ -28,9 +77,9 @@
         <button class="newsletter__button" type="submit">Join the Waitlist</button>
     </form>
 
-    <p class="hero__note fade-up" style="animation-delay:0.34s">No spam, ever. Development updates and early access only.</p>
+    <p class="hero__note fade-up" style="animation-delay:0.38s">No spam, ever. Development updates and early access only.</p>
 
-    <div class="hero__social fade-up" style="animation-delay:0.4s">
+    <div class="hero__social fade-up" style="animation-delay:0.44s">
         {{ with site.Params.github }}
         <a href="{{ . }}" class="icon-btn" title="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -68,16 +117,16 @@
     <div class="devlog__feed">
         {{ $devlog := site.GetPage "/devlog" }}
         {{ with $devlog }}
-            {{ range .Pages }}
-            <a class="entry" href="{{ .RelPermalink }}">
+            {{ range $i, $page := .Pages }}
+            <a class="entry{{ if eq $i 0 }} entry--featured{{ end }}" data-reveal href="{{ $page.RelPermalink }}">
                 <div class="entry__meta">
-                    <span class="entry__date">{{ .Date.Format "2006-01-02" }}</span>
-                    {{ with .Params.tag }}
+                    <span class="entry__date">{{ $page.Date.Format "2006-01-02" }}</span>
+                    {{ with $page.Params.tag }}
                     <span class="tag tag--{{ . | urlize }}">{{ . }}</span>
                     {{ end }}
                 </div>
-                <div class="entry__title">{{ .Title }}</div>
-                {{ with .Params.summary }}
+                <div class="entry__title">{{ $page.Title }}</div>
+                {{ with $page.Params.summary }}
                 <div class="entry__excerpt">{{ . }}</div>
                 {{ end }}
             </a>

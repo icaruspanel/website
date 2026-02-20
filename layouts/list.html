@@ -1,9 +1,11 @@
 {{ define "main" }}
 <div class="topbar">
-    <a href="{{ "/" | absURL }}" class="logo logo--sm">
-        <span class="logo__icon">{{ partial "logo-icon.html" . }}</span>
-        <span class="logo__wordmark">Icarus</span>
-    </a>
+    <div class="topbar__inner">
+        <a href="{{ "/" | absURL }}" class="logo logo--sm">
+            <span class="logo__icon">{{ partial "logo-icon.html" . }}</span>
+            <span class="logo__wordmark">Icarus</span>
+        </a>
+    </div>
 </div>
 
 <section class="devlog">

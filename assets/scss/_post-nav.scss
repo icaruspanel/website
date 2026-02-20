@@ -20,7 +20,7 @@
         &:hover {
             border-color: var(--border-hover);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-card-hover);
+            box-shadow: var(--shadow-card-hover), 0 0 12px var(--flame-glow), inset 0 0 12px rgba(236, 108, 81, 0.03);
 
             .post-nav__title {
                 color: var(--text);

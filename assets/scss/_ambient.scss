@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// Ambient — full-viewport background orbs + noise
+// Ambient — full-viewport background: perspective grid + orbs
 // --------------------------------------------------------------------------
 
 .ambient {
@@ -9,13 +9,77 @@
     z-index: 0;
     overflow: hidden;
 
+    // Perspective grid floor
+    &__grid {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: -50%;
+            right: -50%;
+            bottom: -60%;
+            height: 140%;
+            background-image:
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(236, 108, 81, 0.08) 0px,
+                    rgba(236, 108, 81, 0.08) 1px,
+                    transparent 1px,
+                    transparent 80px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(236, 204, 81, 0.06) 0px,
+                    rgba(236, 204, 81, 0.06) 1px,
+                    transparent 1px,
+                    transparent 80px
+                );
+            transform: perspective(400px) rotateX(60deg);
+            transform-origin: center top;
+        }
+
+        // Fade out the grid at the edges
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                var(--bg) 0%,
+                transparent 30%,
+                transparent 85%,
+                var(--bg) 100%
+            );
+        }
+    }
+
+    // Sweep line
+    &__sweep {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 200px;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(236, 108, 81, 0.04),
+            rgba(236, 204, 81, 0.03),
+            transparent
+        );
+        animation: grid-sweep 8s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    // Dot overlay
     &::after {
         content: '';
         position: fixed;
         inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-        background-size: 256px 256px;
-        opacity: 0.5;
+        background-image: radial-gradient(circle, rgba(240, 236, 230, 0.04) 1px, transparent 1px);
+        background-size: 24px 24px;
         pointer-events: none;
     }
 
@@ -23,34 +87,40 @@
         position: absolute;
         border-radius: 50%;
         filter: blur(90px);
-        opacity: 0.45;
 
         &--flame {
-            width: 550px;
-            height: 550px;
+            width: 650px;
+            height: 650px;
             top: -200px;
             right: -80px;
+            opacity: 0.55;
             background: radial-gradient(circle, var(--flame-glow) 0%, transparent 70%);
             animation: drift-1 14s ease-in-out infinite;
         }
 
         &--gold {
-            width: 450px;
-            height: 450px;
+            width: 550px;
+            height: 550px;
             bottom: -180px;
             left: -120px;
+            opacity: 0.5;
             background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
             animation: drift-2 18s ease-in-out infinite;
         }
 
         &--subtle {
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
             top: 45%;
             left: 60%;
-            background: radial-gradient(circle, rgba(236, 108, 81, 0.05) 0%, transparent 70%);
+            opacity: 0.35;
+            background: radial-gradient(circle, rgba(236, 108, 81, 0.06) 0%, transparent 70%);
             animation: drift-1 22s ease-in-out infinite reverse;
         }
+    }
+
+    @media (max-width: 640px) {
+        &__grid { display: none; }
     }
 }
 
@@ -63,4 +133,9 @@
 @keyframes drift-2 {
     0%, 100% { transform: translate(0, 0); }
     50%      { transform: translate(25px, -20px); }
+}
+
+@keyframes grid-sweep {
+    0%   { top: 100%; }
+    100% { top: -20%; }
 }

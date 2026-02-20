@@ -7,6 +7,8 @@
 
 {{ block "ambient" . }}
 <div class="ambient">
+    <div class="ambient__grid"></div>
+    <div class="ambient__sweep"></div>
     <div class="ambient__orb ambient__orb--flame"></div>
     <div class="ambient__orb ambient__orb--gold"></div>
     <div class="ambient__orb ambient__orb--subtle"></div>
@@ -17,5 +19,21 @@
 
 {{ partial "footer.html" . }}
 
+<script>
+(function(){
+  var els = document.querySelectorAll('[data-reveal]');
+  if (!els.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e, i) {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.06) + 's';
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>

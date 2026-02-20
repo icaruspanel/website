@@ -1,5 +1,7 @@
 {{ define "ambient" }}
 <div class="ambient">
+    <div class="ambient__grid"></div>
+    <div class="ambient__sweep"></div>
     <div class="ambient__orb ambient__orb--flame" style="top:-250px;left:50%;transform:translateX(-50%);right:auto;width:500px;height:500px"></div>
     <div class="ambient__orb ambient__orb--gold" style="bottom:-200px;right:-100px;left:auto;width:400px;height:400px"></div>
 </div>
@@ -7,14 +9,16 @@
 
 {{ define "main" }}
 <div class="topbar">
-    <a href="{{ "/" | absURL }}" class="logo logo--sm">
-        <span class="logo__icon">{{ partial "logo-icon.html" . }}</span>
-        <span class="logo__wordmark">Icarus</span>
-    </a>
-    <a href="{{ "/" | absURL }}#devlog" class="topbar__back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        All posts
-    </a>
+    <div class="topbar__inner">
+        <a href="{{ "/" | absURL }}" class="logo logo--sm">
+            <span class="logo__icon">{{ partial "logo-icon.html" . }}</span>
+            <span class="logo__wordmark">Icarus</span>
+        </a>
+        <a href="{{ "/" | absURL }}#devlog" class="topbar__back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            All posts
+        </a>
+    </div>
 </div>
 
 <article class="article">

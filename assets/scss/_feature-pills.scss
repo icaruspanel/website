@@ -1,0 +1,52 @@
+// --------------------------------------------------------------------------
+// Feature Pills — HUD-style feature highlights in the hero
+// --------------------------------------------------------------------------
+
+.feature-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+
+    &__icon {
+        display: flex;
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+
+        svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--flame);
+            opacity: 0.5;
+            transition: opacity 0.25s;
+        }
+    }
+
+    &__pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.3rem 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-pill);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        letter-spacing: 0.02em;
+        transition: all 0.25s;
+        white-space: nowrap;
+
+        &:hover {
+            border-color: var(--border-hover);
+            color: var(--text-secondary);
+            box-shadow: 0 0 10px var(--flame-glow);
+
+            .feature-pills__icon svg {
+                opacity: 1;
+            }
+        }
+    }
+}

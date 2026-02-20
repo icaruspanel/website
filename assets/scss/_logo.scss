@@ -11,6 +11,7 @@
         display: flex;
         border-radius: var(--radius-lg);
         overflow: hidden;
+        position: relative;
 
         svg {
             width: 100%;
@@ -31,6 +32,18 @@
         .logo__icon {
             width: 40px;
             height: 40px;
+
+            // Radial flame glow behind the logo
+            &::before {
+                content: '';
+                position: absolute;
+                inset: -12px;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(236, 108, 81, 0.3) 0%, rgba(236, 204, 81, 0.1) 40%, transparent 70%);
+                filter: blur(8px);
+                z-index: -1;
+                animation: logo-pulse 3s ease-in-out infinite;
+            }
         }
 
         .logo__wordmark {
@@ -51,4 +64,9 @@
             font-size: 1.1rem;
         }
     }
+}
+
+@keyframes logo-pulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.15); }
 }
