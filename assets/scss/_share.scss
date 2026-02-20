@@ -1,0 +1,27 @@
+// --------------------------------------------------------------------------
+// Share — share links row
+// --------------------------------------------------------------------------
+
+.share {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+
+    &__label {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    &__links {
+        display: flex;
+        gap: 0.4rem;
+    }
+
+    @media (max-width: 640px) {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+}

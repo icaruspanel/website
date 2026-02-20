@@ -1,0 +1,18 @@
+// --------------------------------------------------------------------------
+// Utilities
+// --------------------------------------------------------------------------
+
+.grad-text {
+    background: var(--gradient-flame);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fade-up {
+    animation: fade-up 0.7s ease-out both;
+}
+
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}

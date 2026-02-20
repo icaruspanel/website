@@ -1,0 +1,86 @@
+{{ define "ambient" }}
+<div class="ambient">
+    <div class="ambient__orb ambient__orb--flame" style="top:-250px;left:50%;transform:translateX(-50%);right:auto;width:500px;height:500px"></div>
+    <div class="ambient__orb ambient__orb--gold" style="bottom:-200px;right:-100px;left:auto;width:400px;height:400px"></div>
+</div>
+{{ end }}
+
+{{ define "main" }}
+<div class="topbar">
+    <a href="{{ "/" | absURL }}" class="logo logo--sm">
+        <span class="logo__icon">{{ partial "logo-icon.html" . }}</span>
+        <span class="logo__wordmark">Icarus</span>
+    </a>
+    <a href="{{ "/" | absURL }}#devlog" class="topbar__back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        All posts
+    </a>
+</div>
+
+<article class="article">
+
+    <header class="article__header">
+        <div class="article__meta">
+            <span class="article__date">{{ .Date.Format "2006-01-02" }}</span>
+            {{ with .Params.tag }}
+            <span class="tag tag--lg tag--{{ . | urlize }}">{{ . }}</span>
+            {{ end }}
+            <span class="article__reading">{{ .ReadingTime }} min read</span>
+        </div>
+        <h1 class="article__title">{{ .Title }}</h1>
+        {{ with .Params.summary }}
+        <p class="article__lead">{{ . }}</p>
+        {{ end }}
+    </header>
+
+    <div class="prose">
+        {{ .Content }}
+    </div>
+
+    <div class="article__footer">
+        <div class="share">
+            <span class="share__label">Share this post</span>
+            <div class="share__links">
+                <a class="icon-btn icon-btn--sm" href="https://twitter.com/intent/tweet?url={{ .Permalink | urlquery }}&text={{ .Title | urlquery }}" target="_blank" rel="noopener" title="Share on Twitter">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="post-nav">
+            {{ with .PrevInSection }}
+            <a href="{{ .RelPermalink }}" class="post-nav__link">
+                <div class="post-nav__label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Previous
+                </div>
+                <div class="post-nav__title">{{ .Title }}</div>
+            </a>
+            {{ end }}
+            {{ with .NextInSection }}
+            <a href="{{ .RelPermalink }}" class="post-nav__link post-nav__link--next">
+                <div class="post-nav__label">
+                    Next
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+                <div class="post-nav__title">{{ .Title }}</div>
+            </a>
+            {{ end }}
+        </div>
+
+        <div class="cta-box">
+            <h3 class="cta-box__title">Get the next post in your inbox</h3>
+            <p class="cta-box__description">Development updates and early access — no spam.</p>
+            <form
+                class="newsletter newsletter--centered"
+                action="https://buttondown.com/api/emails/embed-subscribe/{{ site.Params.buttondown_username }}"
+                method="post"
+            >
+                <input class="newsletter__input" type="email" name="email" placeholder="you@example.com" required>
+                <button class="newsletter__button" type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+</article>
+{{ end }}

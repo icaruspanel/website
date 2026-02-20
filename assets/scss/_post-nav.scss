@@ -1,0 +1,69 @@
+// --------------------------------------------------------------------------
+// Post Nav — previous / next post links
+// --------------------------------------------------------------------------
+
+.post-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    &__link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.25rem 1.35rem;
+        transition: all 0.25s;
+
+        &:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-card-hover);
+
+            .post-nav__title {
+                color: var(--text);
+            }
+        }
+
+        &--next {
+            text-align: right;
+
+            .post-nav__label {
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    &__label {
+        font-size: 0.68rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        margin-bottom: 0.45rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+
+        svg {
+            width: 11px;
+            height: 11px;
+        }
+    }
+
+    &__title {
+        font-family: var(--font-heading);
+        font-size: 0.92rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        line-height: 1.35;
+        color: var(--text-secondary);
+        transition: color 0.2s;
+    }
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+    }
+}

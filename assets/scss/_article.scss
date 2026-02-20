@@ -1,0 +1,61 @@
+// --------------------------------------------------------------------------
+// Article — single post layout
+// --------------------------------------------------------------------------
+
+.article {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 4rem;
+
+    &__header {
+        margin-bottom: 3rem;
+        padding-bottom: 2.5rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    &__meta {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-bottom: 1.25rem;
+    }
+
+    &__date {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    &__reading {
+        font-size: var(--text-caption);
+        color: var(--text-muted);
+    }
+
+    &__title {
+        font-family: var(--font-heading);
+        font-size: var(--text-h1);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.035em;
+        margin-bottom: 1rem;
+    }
+
+    &__lead {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        line-height: 1.7;
+    }
+
+    &__footer {
+        margin-top: 3.5rem;
+        padding-top: 2.5rem;
+        border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+        padding: 2.5rem 1.5rem 3rem;
+    }
+}

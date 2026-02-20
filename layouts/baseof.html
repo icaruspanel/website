@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+
+{{ block "ambient" . }}
+<div class="ambient">
+    <div class="ambient__orb ambient__orb--flame"></div>
+    <div class="ambient__orb ambient__orb--gold"></div>
+    <div class="ambient__orb ambient__orb--subtle"></div>
+</div>
+{{ end }}
+
+{{ block "main" . }}{{ end }}
+
+{{ partial "footer.html" . }}
+
+</body>
+</html>

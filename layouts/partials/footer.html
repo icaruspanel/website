@@ -1,0 +1,8 @@
+<footer class="site-footer">
+    <div class="site-footer__copy">&copy; {{ now.Year }} {{ site.Params.copyright }}</div>
+    <div class="site-footer__links">
+        {{ with site.Params.github }}<a href="{{ . }}">GitHub</a>{{ end }}
+        {{ with site.Params.discord }}<a href="{{ . }}">Discord</a>{{ end }}
+        {{ with site.Params.twitter }}<a href="{{ . }}">Twitter</a>{{ end }}
+    </div>
+</footer>

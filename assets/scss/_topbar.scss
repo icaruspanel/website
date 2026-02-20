@@ -1,0 +1,41 @@
+// --------------------------------------------------------------------------
+// Topbar — minimal page-level navigation
+// --------------------------------------------------------------------------
+
+.topbar {
+    position: relative;
+    z-index: 10;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.75rem 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__back {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        text-decoration: none;
+        color: var(--text-muted);
+        font-size: 0.82rem;
+        font-weight: 500;
+        padding: 0.35rem 0.75rem;
+        border-radius: var(--radius-md);
+        transition: all 0.2s;
+
+        &:hover {
+            color: var(--text-secondary);
+            background: var(--surface-2);
+        }
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        padding: 1.25rem 1.5rem 0;
+    }
+}

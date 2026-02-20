@@ -1,0 +1,26 @@
+// --------------------------------------------------------------------------
+// Tag — small coloured label
+// --------------------------------------------------------------------------
+
+.tag {
+    display: inline-flex;
+    padding: 0.12rem 0.45rem;
+    border-radius: 4px;
+    font-size: var(--text-micro);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &--architecture  { background: rgba(236, 108, 81, 0.1);  color: var(--flame-light); }
+    &--plugin        { background: rgba(91, 184, 176, 0.1);  color: var(--cyan); }
+    &--release       { background: rgba(94, 189, 115, 0.1);  color: var(--green); }
+    &--design        { background: rgba(217, 112, 133, 0.1); color: var(--rose); }
+    &--spec          { background: rgba(236, 204, 81, 0.1);  color: var(--gold); }
+    &--announcement  { background: rgba(91, 143, 216, 0.1);  color: var(--blue); }
+
+    &--lg {
+        padding: 0.15rem 0.5rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.65rem;
+    }
+}

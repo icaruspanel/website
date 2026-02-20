@@ -1,0 +1,39 @@
+baseURL = 'https://icaruspanel.com/'
+languageCode = 'en-gb'
+title = 'Icarus Panel'
+disableKinds = ['taxonomy']
+
+[permalinks]
+  [permalinks.page]
+    devlog = '/devlog/:year/:month/:slug/'
+  [permalinks.section]
+    devlog = '/devlog/'
+
+[outputs]
+  home = ['html', 'rss']
+  section = ['html']
+  page = ['html']
+
+[outputFormats.RSS]
+  mediatype = 'application/rss+xml'
+  baseName = 'feed'
+
+[pagination]
+  pagerSize = 10
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+  [markup.highlight]
+    style = 'github-dark'
+    lineNos = true
+
+[params]
+  description = 'Icarus Panel - A modern game server management panel'
+  author = 'Icarus Panel'
+  buttondown_username = 'icaruspanel'
+  copyright = 'Icarus · Ollieread LTD'
+  github = 'https://github.com/icaruspanel'
+  #discord = '#'
+  #twitter = '#'

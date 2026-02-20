@@ -1,0 +1,39 @@
+// --------------------------------------------------------------------------
+// Icon Button — square icon-only interactive element
+// --------------------------------------------------------------------------
+
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        border-color: var(--border-hover);
+        color: var(--text-secondary);
+        background: var(--surface-2);
+    }
+
+    svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    &--sm {
+        width: 34px;
+        height: 34px;
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="topbar">
+    <a href="{{ "/" | absURL }}" class="logo logo--sm">
+        <span class="logo__icon">{{ partial "logo-icon.html" . }}</span>
+        <span class="logo__wordmark">Icarus</span>
+    </a>
+</div>
+
+<section class="devlog">
+    <div class="devlog__header">
+        <span class="devlog__title">{{ .Title }}</span>
+        {{ with .OutputFormats.Get "RSS" }}
+        <a href="{{ .Permalink }}" class="devlog__rss">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+            RSS
+        </a>
+        {{ end }}
+    </div>
+
+    <div class="devlog__feed">
+        {{ range .Pages }}
+        <a class="entry" href="{{ .RelPermalink }}">
+            <div class="entry__meta">
+                <span class="entry__date">{{ .Date.Format "2006-01-02" }}</span>
+                {{ with .Params.tag }}
+                <span class="tag tag--{{ . | urlize }}">{{ . }}</span>
+                {{ end }}
+            </div>
+            <div class="entry__title">{{ .Title }}</div>
+            {{ with .Params.summary }}
+            <div class="entry__excerpt">{{ . }}</div>
+            {{ end }}
+        </a>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

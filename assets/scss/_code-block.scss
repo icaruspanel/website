@@ -1,0 +1,40 @@
+// --------------------------------------------------------------------------
+// Code Block — fenced code with syntax highlighting
+// --------------------------------------------------------------------------
+
+.code-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.35rem 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    position: relative;
+
+    &__lang {
+        position: absolute;
+        top: 0.65rem;
+        right: 0.85rem;
+        font-family: var(--font-mono);
+        font-size: var(--text-micro);
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-weight: 500;
+    }
+
+    code {
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        line-height: 1.85;
+        color: var(--text-secondary);
+    }
+
+    // Syntax tokens
+    .token-keyword  { color: #EC8D7A; }
+    .token-type     { color: #F0B96C; }
+    .token-function { color: #ECCC51; }
+    .token-string   { color: #8BC99A; }
+    .token-variable { color: #E8D8A8; }
+    .token-comment  { color: #5C5548; }
+}
