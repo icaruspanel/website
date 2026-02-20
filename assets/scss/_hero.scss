@@ -12,7 +12,7 @@
     justify-content: center;
     text-align: center;
     padding: 4rem 2rem 5rem;
-    overflow: hidden;
+    overflow: visible;
 
     &__logo       { margin-bottom: 3rem; }
     &__beacon     { margin-bottom: 2.5rem; }
@@ -47,7 +47,7 @@
         font-size: 0.65rem;
         line-height: 1.7;
         color: var(--text-muted);
-        opacity: 0.07;
+        opacity: 0.4;
         pointer-events: none;
         white-space: pre;
         margin: 0;
