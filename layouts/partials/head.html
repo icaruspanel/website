@@ -2,6 +2,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+
+{{/* Favicon */}}
+<link rel="icon" type="image/png" href="/favicon.png">
+
+{{/* Open Graph */}}
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:locale" content="{{ site.Language.LanguageCode }}">
+{{ $ogImage := resources.Get site.Params.og_image }}
+{{ with $ogImage }}
+<meta property="og:image" content="{{ .Permalink }}">
+<meta property="og:image:width" content="{{ .Width }}">
+<meta property="og:image:height" content="{{ .Height }}">
+{{ end }}
+{{ if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+{{ with .Params.tag }}<meta property="article:tag" content="{{ . }}">{{ end }}
+{{ end }}
+
+{{/* Twitter / X */}}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
+{{ with $ogImage }}
+<meta name="twitter:image" content="{{ .Permalink }}">
+{{ end }}
+
+{{/* Theme color (for Discord, mobile browsers) */}}
+<meta name="theme-color" content="{{ site.Params.theme_color }}">
+
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 {{ $opts := dict "transpiler" "libsass" }}
 {{ $style := resources.Get "scss/main.scss" | css.Sass $opts | minify | fingerprint }}

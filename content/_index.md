@@ -1,6 +1,6 @@
 ---
 title: "Icarus Panel"
-description: "A modern server management panel"
+description: "A modern game server management panel"
 ---
 
-The modular, open-source game server management panel built for hosting providers who refuse to compromise. Proper architecture. First-class plugins. Beautiful interface.
+The modular, open-source game server management panel built for those who refuse to compromise. Proper architecture. First-class plugins. Beautiful interface.
