@@ -37,7 +37,6 @@
     "definition"  : {
       "type"       : "string",
       "description": "The fully-qualified class name of the module's definition class.",
-      "pattern"    : "^[A-Z][a-zA-Z0-9]*(\\\\[A-Z][a-zA-Z0-9]*)*$",
       "examples"   : ["Icarus\\Backups\\BackupsModule"]
     },
     "author"      : {
@@ -141,8 +140,7 @@
       "type"       : "array",
       "description": "Fully-qualified class names of CollectorHandler implementations this module provides. Each handler's collects() method determines which Collector type it handles.",
       "items"      : {
-        "type"   : "string",
-        "pattern": "^[A-Z][a-zA-Z0-9]*(\\\\[A-Z][a-zA-Z0-9]*)*$"
+        "type": "string"
       },
       "uniqueItems": true
     },
