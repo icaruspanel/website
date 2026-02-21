@@ -1,0 +1,162 @@
+{
+  "$schema"             : "http://json-schema.org/draft-07/schema#",
+  "$id"                 : "https://icaruspanel.com/schemas/module/v1.schema.json",
+  "title"               : "Icarus Module v1",
+  "description"         : "Schema for Icarus module.json metadata files.",
+  "type"                : "object",
+  "required"            : [
+    "type",
+    "name",
+    "version",
+    "definition",
+    "requires"
+  ],
+  "additionalProperties": false,
+  "properties"          : {
+    "type"        : {
+      "const"      : "module",
+      "description": "The type of package. Must be 'module'."
+    },
+    "name"        : {
+      "type"       : "string",
+      "description": "The human-readable display name of the module.",
+      "minLength"  : 1,
+      "maxLength"  : 100
+    },
+    "description" : {
+      "type"       : "string",
+      "description": "A brief description of the module's purpose.",
+      "maxLength"  : 500
+    },
+    "version"     : {
+      "type"       : "string",
+      "description": "The module version, following semantic versioning.",
+      "pattern"    : "^\\d+\\.\\d+\\.\\d+(-[a-zA-Z0-9.]+)?(\\+[a-zA-Z0-9.]+)?$",
+      "examples"   : ["1.0.0", "2.1.0-beta.1"]
+    },
+    "definition"  : {
+      "type"       : "string",
+      "description": "The fully-qualified class name of the module's definition class.",
+      "pattern"    : "^[A-Z][a-zA-Z0-9]*(\\\\[A-Z][a-zA-Z0-9]*)*$",
+      "examples"   : ["Icarus\\Backups\\BackupsModule"]
+    },
+    "author"      : {
+      "type"                : "object",
+      "description"         : "The module author.",
+      "required"            : ["name"],
+      "additionalProperties": false,
+      "properties"          : {
+        "name": {
+          "type"       : "string",
+          "description": "The author's name.",
+          "minLength"  : 1
+        },
+        "url" : {
+          "type"       : "string",
+          "description": "The author's URL.",
+          "format"     : "uri"
+        }
+      }
+    },
+    "license"     : {
+      "type"       : "string",
+      "description": "The SPDX license identifier for the module.",
+      "examples"   : ["MIT", "GPL-3.0-only", "proprietary"]
+    },
+    "urls"        : {
+      "type"                : "object",
+      "description"         : "Relevant URLs for the module.",
+      "additionalProperties": false,
+      "properties"          : {
+        "homepage": {
+          "type"       : "string",
+          "description": "The module's homepage.",
+          "format"     : "uri"
+        },
+        "issues"  : {
+          "type"       : "string",
+          "description": "The issue tracker URL.",
+          "format"     : "uri"
+        },
+        "docs"    : {
+          "type"       : "string",
+          "description": "The documentation URL.",
+          "format"     : "uri"
+        },
+        "source"  : {
+          "type"       : "string",
+          "description": "The source code repository URL.",
+          "format"     : "uri"
+        },
+        "updates" : {
+          "type"       : "string",
+          "description": "The URL for the standardised update metadata endpoint. Used for manually-installed modules to check for new versions.",
+          "format"     : "uri"
+        }
+      }
+    },
+    "icon"        : {
+      "type"       : "string",
+      "description": "Path to the module's icon, relative to the module root.",
+      "examples"   : ["assets/icon.svg"]
+    },
+    "requires"    : {
+      "type"       : "string",
+      "description": "The Icarus version constraint this module is compatible with. Uses Composer-style version constraints.",
+      "pattern"    : "^[\\^~><=!|\\d.*,\\s]+$",
+      "examples"   : ["^1.0", "^2.0", ">=1.5 <3.0"]
+    },
+    "keywords"    : {
+      "type"       : "array",
+      "description": "Keywords for discovery and categorisation.",
+      "items"      : {
+        "type"     : "string",
+        "minLength": 1,
+        "maxLength": 50,
+        "pattern"  : "^[a-z0-9-]+$"
+      },
+      "maxItems"   : 20,
+      "uniqueItems": true
+    },
+    "capabilities": {
+      "type"       : "array",
+      "description": "The system capabilities this module requires. These are enforced by the kernel at registration points.",
+      "items"      : {
+        "type": "string",
+        "enum": [
+          "unrestricted",
+          "cross-validate",
+          "cross-settings",
+          "cross-routes",
+          "cross-storage",
+          "extend-schema",
+          "modify-ui",
+          "system-commands",
+          "daemon-access"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "collectors"  : {
+      "type"       : "array",
+      "description": "Fully-qualified class names of CollectorHandler implementations this module provides. Each handler's collects() method determines which Collector type it handles.",
+      "items"      : {
+        "type"   : "string",
+        "pattern": "^[A-Z][a-zA-Z0-9]*(\\\\[A-Z][a-zA-Z0-9]*)*$"
+      },
+      "uniqueItems": true
+    },
+    "extra"       : {
+      "type"                : "object",
+      "description"         : "Freeform metadata for use by other modules. Keys should be namespaced by the consuming module's identifier to avoid collisions.",
+      "additionalProperties": true,
+      "examples"            : [
+        {
+          "wings": {
+            "supported_versions": ["^1.0", "^2.0"]
+          }
+        }
+      ]
+    }
+  }
+}
